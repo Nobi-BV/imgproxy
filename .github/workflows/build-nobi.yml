@@ -39,6 +39,7 @@ jobs:
           images: ${{ secrets.DOCKER_META_IMAGES }}
           tags: ${{ env.DOCKER_META_TAGS }}
           flavor: |
+            latest=false
             suffix=-${{ matrix.build.arch }},onlatest=true
 
       - name: Log in to GitHub Container Registry
@@ -69,6 +70,8 @@ jobs:
           provenance: false
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha,scope=${{ matrix.build.arch }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.build.arch }}
 
   push-manifests:
     needs: build
@@ -83,6 +86,8 @@ jobs:
         with:
           images: ${{ secrets.DOCKER_META_IMAGES }}
           tags: ${{ env.DOCKER_META_TAGS }}
+          flavor: |
+            latest=false
 
       - name: Configure AWS credentials using OIDC
         uses: aws-actions/configure-aws-credentials@ec61189d14ec14c8efccab744f656cffd0e33f37 # v6.1.0
