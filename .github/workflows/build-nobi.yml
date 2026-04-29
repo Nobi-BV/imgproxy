@@ -7,6 +7,7 @@ on:
       - '*nobi*'
 
 env:
+  DOCKER_META_IMAGES: 456815938706.dkr.ecr.eu-central-1.amazonaws.com/nobi/imgproxy
   DOCKER_META_TAGS: |
     type=ref,event=tag
     type=sha,enable=${{ github.event_name == 'workflow_dispatch' }}
@@ -36,7 +37,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@030e881283bb7a6894de51c315a6bfe6a94e05cf # v6.0.0
         with:
-          images: ${{ secrets.DOCKER_META_IMAGES }}
+          images: ${{ env.DOCKER_META_IMAGES }}
           tags: ${{ env.DOCKER_META_TAGS }}
           flavor: |
             latest=false
@@ -84,7 +85,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@030e881283bb7a6894de51c315a6bfe6a94e05cf # v6.0.0
         with:
-          images: ${{ secrets.DOCKER_META_IMAGES }}
+          images: ${{ env.DOCKER_META_IMAGES }}
           tags: ${{ env.DOCKER_META_TAGS }}
           flavor: |
             latest=false
