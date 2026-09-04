@@ -1,4 +1,4 @@
-ARG BASE_IMAGE_VERSION="v3.15.9.nobi.5"
+ARG BASE_IMAGE_VERSION="v3.15.9.nobi.6"
 
 FROM ghcr.io/nobi-bv/imgproxy-docker-base:${BASE_IMAGE_VERSION} AS build
 
