@@ -70,7 +70,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Configure AWS credentials using OIDC
-        uses: Nobi-BV/github-actions/configure-aws-credentials-dockerless@main
+        uses: Nobi-BV/github-actions/configure-aws-credentials-dockerless@7d5ae8729baef22747c9c2de0933d8c7ac03e096 # main
 
       - name: Login to Amazon ECR
         id: login-ecr
@@ -106,7 +106,7 @@ jobs:
             latest=false
 
       - name: Configure AWS credentials using OIDC
-        uses: Nobi-BV/github-actions/configure-aws-credentials-dockerless@main
+        uses: Nobi-BV/github-actions/configure-aws-credentials-dockerless@7d5ae8729baef22747c9c2de0933d8c7ac03e096 # main
 
       - name: Login to Amazon ECR
         id: login-ecr
